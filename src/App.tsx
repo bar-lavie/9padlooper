@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.scss";
+import Pad from "./components/Pad";
+import OnOff from "./components/OnOff";
 
-function App() {
+const App: React.FC = () => {
+  const [started, setStarted] = useState<boolean>(false);
+
+  // create hardcoded array of audio files to play
+  const pads = [];
+  for (let i = 1; i < 10; i++) {
+    pads.push(<Pad key={i} file={i} started={started} />);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="pads">{pads}</div>
+      <button
+        className={`startButton ${started ? "active" : ""}`}
+        onClick={() => {
+          setStarted(!started);
+        }}
+      >
+        <OnOff />
+      </button>
     </div>
   );
-}
+};
 
 export default App;
