@@ -51,18 +51,6 @@
       .stopBtn {
         display: none;
       }
-      .count {
-        position: absolute;
-        background-color: transparent;
-        outline: none;
-        z-index: 1;
-        font-size: 50px;
-        opacity: 0.1;
-        pointer-events: none;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
     }
   }
 }

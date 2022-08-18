@@ -74,7 +74,6 @@ const Pad: React.FC<PadProps> = (props) => {
       {/* <button className="stopBtn" onClick={() => handleStop()}>
         Stop
       </button> */}
-      <span className="count">{count.toFixed(1)}</span>
     </div>
   );
 };
