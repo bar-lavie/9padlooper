@@ -19,6 +19,7 @@ const Pad: React.FC<PadProps> = (props) => {
       handleStop();
       setCount(0);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.started]);
 
   /**
@@ -29,23 +30,23 @@ const Pad: React.FC<PadProps> = (props) => {
    */
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (props.started) {
-        if (count >= 7.5) {
-          setCount(0);
-          handlePlay();
-        } else {
-          setCount(count + 0.1);
-        }
+      if (!props.started) return;
+      if (count >= 7.5) {
+        setCount(0);
+        handlePlay();
+      } else {
+        setCount(count + 0.1);
       }
     }, 100);
 
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count, props.started]);
 
   // listen to the InCue state, and determine if to color the pad in orange (orange = will be start in next cue)
   useEffect(() => {
     setInNextCue(inCue && audioRef.current!.paused);
-  }, [inCue, audioRef.current, count]);
+  }, [inCue, count]);
 
   const handlePlay = () => {
     if (!inCue) {
